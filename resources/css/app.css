@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /* --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; */
+    --font-sans:
+        "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    --color-zinc-50: var(--color-neutral-50);
+    --color-zinc-100: var(--color-neutral-100);
+    --color-zinc-200: var(--color-neutral-200);
+    --color-zinc-300: var(--color-neutral-300);
+    --color-zinc-400: var(--color-neutral-400);
+    --color-zinc-500: var(--color-neutral-500);
+    --color-zinc-600: var(--color-neutral-600);
+    --color-zinc-700: var(--color-neutral-700);
+    --color-zinc-800: var(--color-neutral-800);
+    --color-zinc-900: var(--color-neutral-900);
+    --color-zinc-950: var(--color-neutral-950);
+
+    --color-accent: var(--color-blue-600);
+    --color-accent-content: var(--color-blue-500);
+    --color-accent-foreground: var(--color-black);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-blue-600);
+        --color-accent-content: var(--color-blue-500);
+        --color-accent-foreground: var(--color-white);
+    }
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+/* Global Interactivity - Selective Transitions */
+a,
+button,
+input,
+select,
+textarea,
+.transition-all-interactive {
+    @apply transition-all ease-in-out duration-200;
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+a[data-flux-brand] div.text-sm {
+    @apply text-accent-foreground font-bold! hidden!;
+}
+
+/* Navbar */
+#nav-items a {
+    @apply font-medium!;
+}
+
+/* This controls the container, idk how */
+.\[\:where\(\&\)\]\:max-w-7xl {
+    @apply max-w-screen sm:max-w-[90vw] md:max-w-[80vw];
+}
+
+/* Hero Section */
+#hero .btn-primary {
+    @apply bg-accent text-white text-base sm:text-lg rounded-lg px-4 py-3 flex items-center font-medium justify-center hover:bg-accent/70 transition-colors duration-200;
+}
+
+#hero .btn-ghost {
+    @apply text-accent bg-transparent dark:text-accent-foreground dark:border-accent-foreground border-2 border-accent text-base sm:text-lg rounded-lg px-4 py-3 flex items-center font-medium justify-center hover:bg-accent hover:text-white hover:dark:bg-white/40 transition-colors duration-200;
+}
+
+#counters .card-stat {
+    @apply bg-white dark:bg-neutral-900 rounded-xl shadow-xl p-6 flex flex-col items-center justify-center;
+}
+
+#counters .icon-box {
+    @apply flex items-center justify-center;
+}
+
+#counters .icon-box-stat {
+    @apply size-10 bg-blue-100 dark:bg-blue-600 rounded-full mb-4;
+}
+
+#counters .icon-box-stat svg {
+    @apply text-blue-600 size-6 dark:text-blue-100;
+}
+
+#counters .text-counter {
+    @apply text-3xl font-bold text-gray-900 dark:text-gray-100 mb-1;
+}
+
+/* Programs._header */
+input#program_searchbar {
+    @apply shadow-none! dark:border-0! ring-0!;
+}
