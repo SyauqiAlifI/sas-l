@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages::home.index')->name('home');
 Route::view('program', 'pages::program.index')->name('program');
-Route::view('program/detail/{program:slug}', 'pages::program.detail.index')->name('program.detail');
+Route::get('program/detail/{program:slug}', function (App\Models\Program $program) {
+    return view('pages::program.detail.index', ['program' => $program]);
+})->name('program.detail');
 
 Route::view('dashboard', 'pages::dashboard.dashboard')
     ->middleware(['auth', 'verified'])

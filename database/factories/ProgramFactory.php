@@ -29,7 +29,7 @@ class ProgramFactory extends Factory
             'closedDate' => fake()->date(),
             'is_open' => fake()->boolean(),
             'user_joined' => fake()->numberBetween(0, 1000),
-            'rating' => fake()->randomElement(['poor', 'bad', 'neutral', 'good', 'best']),
+            'rating' => fake()->randomFloat(1, 1, 5),
             'thumbnail' => 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             'country_code' => fake()->countryCode(),
             'discount' => fake()->optional()->numberBetween(10, 50),

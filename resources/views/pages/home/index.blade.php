@@ -7,7 +7,7 @@ new class extends Component {
 };
 ?>
 
-<x-layouts::app>
+<x-layouts::app :title="__('Sea Education')" :description="__('Description')">
   <flux:main container>
     <livewire:pages::home._hero />
     <livewire:pages::home._counter />

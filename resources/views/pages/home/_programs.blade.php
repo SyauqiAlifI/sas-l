@@ -10,18 +10,6 @@ new class extends Component {
     {
         return Program::where('is_open', true)->orderBy('user_joined', 'desc')->take(3)->get();
     }
-
-    public function getRatingStars($rating)
-    {
-        return match ($rating) {
-            'poor' => 1,
-            'bad' => 2,
-            'neutral' => 3,
-            'good' => 4,
-            'best' => 5,
-            default => 0,
-        };
-    }
 };
 ?>
 
@@ -68,7 +56,9 @@ new class extends Component {
                   {{ $program->title }}
                 </flux:heading>
                 <div class="flex items-center gap-0.5">
-                  @php $stars = $this->getRatingStars($program->rating) @endphp
+                  @php $stars = round($program->rating ?? 0) @endphp
+                  <span
+                    class="text-sm font-bold text-gray-900 dark:text-white mr-1">{{ number_format($program->rating, 1) }}</span>
                   @for ($i = 1; $i <= 5; $i++)
                     <flux:icon icon="star" variant="{{ $i <= $stars ? 'solid' : 'outline' }}"
                       class="w-4 h-4 {{ $i <= $stars ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600' }}" />

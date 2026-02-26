@@ -52,24 +52,12 @@ new class extends Component {
 
         match ($this->sort) {
             'popular' => $query->orderBy('user_joined', 'desc'),
-            'rating' => $query->orderByRaw("CASE rating WHEN 'best' THEN 5 WHEN 'good' THEN 4 WHEN 'neutral' THEN 3 WHEN 'bad' THEN 2 WHEN 'poor' THEN 1 ELSE 0 END DESC"),
+            'rating' => $query->orderBy('rating', 'desc'),
             'oldest' => $query->orderBy('created_at', 'asc'),
             default => $query->orderBy('created_at', 'desc'),
         };
 
         return $query->paginate(9);
-    }
-
-    public function getRatingStars($rating)
-    {
-        return match ($rating) {
-            'poor' => 1,
-            'bad' => 2,
-            'neutral' => 3,
-            'good' => 4,
-            'best' => 5,
-            default => 0,
-        };
     }
 };
 ?>
@@ -136,13 +124,16 @@ new class extends Component {
 
             <div class="mt-4">
               <div class="flex justify-between items-end mb-4">
-                <div class="flex flex-col items-start gap-3">
+                <div class="flex flex-col items-start gap-1">
                   <div class="flex items-center gap-0.5">
-                    @php $stars = $this->getRatingStars($program->rating) @endphp
-                    @for ($i = 1; $i <= 5; $i++)
+                    {{-- @php $stars = round($program->rating ?? 0) @endphp --}}
+                    <flux:icon icon="star" variant="solid" class="w-4 h-4 text-yellow-400 mr-1" />
+                    <span
+                      class="text-xs! font-normal! text-gray-900 dark:text-white">{{ number_format($program->rating, 1) }}</span>
+                    {{-- @for ($i = 1; $i <= 5; $i++)
                       <flux:icon icon="star" variant="{{ $i <= $stars ? 'solid' : 'outline' }}"
                         class="w-4 h-4 {{ $i <= $stars ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600' }}" />
-                    @endfor
+                    @endfor --}}
                   </div>
                   <div class="flex items-center gap-2">
                     <flux:icon icon="users" class="w-4 h-4 text-accent" />
