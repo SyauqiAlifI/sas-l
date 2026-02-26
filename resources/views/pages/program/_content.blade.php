@@ -98,10 +98,10 @@ new class extends Component {
           <div class="flex-1 space-y-2 p-4">
             <div class="flex items-center space-x-2">
               {{-- Top ... in ... Badge, Category badge, Program type badge --}}
-              <flux:badge rounded variant="solid" class="bg-white! dark:bg-neutral-800! text-sm! font-normal!">
+              <flux:badge variant="solid" class="bg-white! dark:bg-neutral-800! text-[0.65rem]! font-normal!">
                 {{ $program->category->name }}
               </flux:badge>
-              <flux:badge rounded variant="solid" class="bg-white! dark:bg-neutral-800! text-sm! font-normal!">
+              <flux:badge variant="solid" class="bg-white! dark:bg-neutral-800! text-[0.65rem]! font-normal!">
                 {{ $program->type }}
               </flux:badge>
             </div>
